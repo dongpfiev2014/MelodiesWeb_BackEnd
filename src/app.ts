@@ -23,7 +23,15 @@ app.use(
 const PORT = process.env.PORT || 4000;
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, this is the Melodies Web API!");
+  res.send({
+    message: "Welcome to the API!",
+    status: "success",
+    version: "1.0.0",
+    author: "Your Name",
+    email: "your_email@example.com",
+    license: "MIT",
+    documentation: "https://your-api-documentation.com",
+  });
 });
 
 app.listen(PORT, () => {
