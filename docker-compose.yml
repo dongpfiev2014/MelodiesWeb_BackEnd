@@ -1,0 +1,23 @@
+services:
+  client:
+    build:
+      context: ../MelodiesWeb_FrontEnd
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../MelodiesWeb_FrontEnd:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Use polling for hot-reload in certain environments
+
+  server:
+    build:
+      context: ../MelodiesWeb_BackEnd
+    ports:
+      - "3001:3001"
+    volumes:
+      - ../MelodiesWeb_BackEnd:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Use polling for hot-reload in certain environments
+

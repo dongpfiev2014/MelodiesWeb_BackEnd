@@ -29,6 +29,7 @@ app.get("/", (req: Request, res: Response) => {
     version: "1.0.0",
     author: "Your Name",
     email: "your_email@example.com",
+    email2: "your_email2@example.com",
     license: "MIT",
     documentation: "https://your-api-documentation.com",
   });
