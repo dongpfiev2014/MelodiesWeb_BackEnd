@@ -26,10 +26,6 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello, this is the Melodies Web API!");
 });
 
-console.log("quần què gì vậy");
-console.log("quần què gì vậy");
-console.log("quần què gì vậy");
-
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
