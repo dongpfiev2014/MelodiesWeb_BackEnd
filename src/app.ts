@@ -28,8 +28,8 @@ app.get("/", (req: Request, res: Response) => {
     status: "success",
     version: "1.0.0",
     author: "Your Name",
+    author2: "Dong",
     email: "your_email@example.com",
-    email2: "your_email2@example.com",
     license: "MIT",
     documentation: "https://your-api-documentation.com",
   });
