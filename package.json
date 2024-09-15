@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.ts",
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start:dev": "ts-node src/app.ts",
+    "start:prod": "node dist/app.js",
     "build": "tsc",
     "dev": "nodemon src/app.ts"
   },
