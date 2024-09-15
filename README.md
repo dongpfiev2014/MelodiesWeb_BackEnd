@@ -12,10 +12,10 @@ Melodix App is a music streaming platform built with **Express.js**. It allows u
 
 ## Technologies Used 🛠️
 
-Backend: Express.js, Node.js
-Database: PostgreSQL
-ORM: TypeORM
-Authentication: Session
-File Upload: Cloudinary
-Testing: Jest
-Docker: Docker Compose
+- Backend: Express.js, Node.js
+- Database: PostgreSQL
+- ORM: TypeORM
+- Authentication: Session
+- File Upload: Cloudinary
+- Testing: Jest
+- Docker: Docker Compose
