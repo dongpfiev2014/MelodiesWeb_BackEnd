@@ -50,7 +50,5 @@ services:
     volumes:
       - ./src/database/redis-data:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
-    env_file:
-      - .env
     ports:
       - "6379:6379"
