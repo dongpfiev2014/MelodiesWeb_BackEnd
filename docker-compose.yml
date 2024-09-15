@@ -20,4 +20,37 @@ services:
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true # Use polling for hot-reload in certain environments
+    depends_on:
+      - postgres
+      - pgadmin
+      - redis
 
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - ./src/database/postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    volumes:
+      - ./src/database/pgadmin-data:/var/lib/pgadmin
+    env_file:
+      - .env
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+  redis:
+    image: redis:7.2-alpine
+    volumes:
+      - ./src/database/redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    env_file:
+      - .env
+    ports:
+      - "6379:6379"
