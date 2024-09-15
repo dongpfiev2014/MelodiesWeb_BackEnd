@@ -19,6 +19,7 @@ services:
       - ../MelodiesWeb_BackEnd:/app
       - /app/node_modules
     environment:
+      - NODE_ENV=docker
       - CHOKIDAR_USEPOLLING=true # Use polling for hot-reload in certain environments
     depends_on:
       - postgres
