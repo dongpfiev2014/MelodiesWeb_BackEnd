@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { User } from "../entity/User.entity";
 import { encrypt } from "../helpers/helpers";
@@ -44,9 +44,13 @@ export class AuthController {
     }
   }
 
-  static async logIn(req: Request, res: Response) {
+  static logIn(req: Request, res: Response) {
     return res.status(200).send({
       message: "Logged in successfully",
     });
+  }
+
+  static getStatus(req: Request, res: Response) {
+    return req.user ? res.send(req.user) : res.sendStatus(401);
   }
 }

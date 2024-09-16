@@ -8,6 +8,13 @@ import session from "express-session";
 import passport from "passport";
 import Redis from "ioredis";
 import RedisStore from "connect-redis";
+import crypto from "crypto";
+
+export const redisClient = new Redis({
+  host: process.env.REDIS_HOST,
+  port: parseInt(process.env.REDIS_PORT as string, 10),
+  db: 0,
+});
 
 export function createApp() {
   dotenv.config();
@@ -34,11 +41,6 @@ export function createApp() {
   );
 
   // Applies to using session with redis
-  const redisClient = new Redis({
-    host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT as string, 10),
-    db: 0,
-  });
 
   const redisStore = new RedisStore({
     client: redisClient,
@@ -54,8 +56,14 @@ export function createApp() {
     session({
       store: redisStore,
       resave: false,
-      saveUninitialized: true,
+      saveUninitialized: false,
       secret: process.env.SESSION_SECRET as string,
+      genid(req) {
+        const sessionId = crypto.randomBytes(16).toString("hex");
+        console.log("Generated Session ID:", sessionId);
+        return sessionId; // Tạo session ID độc nhất
+      },
+
       cookie: {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

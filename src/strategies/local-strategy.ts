@@ -3,6 +3,8 @@ import { Strategy } from "passport-local";
 import { User } from "../entity/User.entity";
 import { AppDataSource } from "../data-source";
 import { encrypt } from "../helpers/helpers";
+import { UserResponseDto } from "../dto/user-response.dto";
+import { plainToInstance } from "class-transformer";
 
 passport.serializeUser(
   (user: any, done: (err: Error | null, id: string) => void) => {
@@ -11,12 +13,14 @@ passport.serializeUser(
 );
 
 passport.deserializeUser(
-  async (id: string, done: (err: Error | null, user: User | null) => void) => {
+  async (
+    id: string,
+    done: (err: Error | null, user: UserResponseDto | null) => void
+  ) => {
     try {
-      console.log(id);
       const userRepository = AppDataSource.getRepository(User);
       const user = await userRepository.findOneBy({ id });
-      done(null, user);
+      done(null, plainToInstance(UserResponseDto, user));
     } catch (err) {
       done(err as Error, null);
     }
@@ -31,7 +35,6 @@ passport.use(
       done: (err: any, user?: User | false, info?: any) => void
     ) => {
       try {
-        console.log(username, password);
         const userRepository = AppDataSource.getRepository(User);
         const user = await userRepository.findOne({ where: { username } });
 

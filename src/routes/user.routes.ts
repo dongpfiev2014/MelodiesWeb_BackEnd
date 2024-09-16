@@ -1,15 +1,16 @@
-// import { Router } from "express";
-// import { authentication, authorization } from "../middlewares/auth.middleware";
+import { Router } from "express";
+import { authentication, authorization } from "../middlewares/auth.middleware";
+import { UserController } from "../controllers/user.controller";
 
-// const userRouter = Router();
-// userRouter.use(authentication);
+const userRouter = Router();
+userRouter.use(authentication);
 
-// // userRouter.get("/profile", authorization(["user", "admin"]), getProfile);
+userRouter.get("/users", authorization(["admin"]), UserController.getUsers);
 
-// // userRouter.put("/update/:id", authorization(["user", "admin"]), updateUser);
+// userRouter.get("/profile", authorization(["user", "admin"]), getProfile);
 
-// // userRouter.get("/users", authorization(["admin"]), getUsers);
+// userRouter.put("/update/:id", authorization(["user", "admin"]), updateUser);
 
-// // userRouter.delete("/delete/:id", authorization(["admin"]), deleteUser);
+// userRouter.delete("/delete/:id", authorization(["admin"]), deleteUser);
 
-// export default userRouter;
+export default userRouter;

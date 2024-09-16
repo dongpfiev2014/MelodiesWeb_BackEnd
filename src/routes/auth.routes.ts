@@ -12,4 +12,6 @@ authRouter.post(
   AuthController.logIn
 );
 
+authRouter.get("/status", AuthController.getStatus);
+
 export default authRouter;
