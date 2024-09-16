@@ -34,7 +34,7 @@
 //     user.name = name;
 //     user.email = email;
 //     await userRepository.save(user);
-//     res.status(200).json({ message: "udpdate", user });
+//     res.status(200).json({ message: "update", user });
 //   }
 
 //   static async deleteUser(req: Request, res: Response) {

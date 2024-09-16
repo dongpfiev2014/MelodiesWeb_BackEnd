@@ -7,6 +7,7 @@ export const authentication = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(req.session);
   if (!req.session || !req.session.user) {
     return res.status(401).json({ message: "Unauthorized" });
   }
