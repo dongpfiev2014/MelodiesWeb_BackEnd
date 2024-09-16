@@ -3,14 +3,16 @@ import { User } from "../entity/User.entity";
 
 declare module "express-session" {
   interface SessionData {
-    user?: User;
+    passport?: {
+      user?: any;
+    };
   }
 }
 
 // declare global {
 //   namespace Express {
 //     interface Request {
-//       currentUser?: any;
+//       user?: User;
 //     }
 //   }
 // }

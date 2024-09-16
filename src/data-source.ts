@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import dotenv from "dotenv";
 import { DataSource } from "typeorm";
+import path from "path";
 
 dotenv.config();
 
@@ -24,9 +25,9 @@ export const AppDataSource = new DataSource({
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
   database: POSTGRES_DB,
-  entities: [__dirname + "/entity/**/*.ts"],
+  entities: [path.resolve("src/entity/**/*.ts")],
   synchronize: NODE_ENV === "development" || NODE_ENV === "docker",
   logging: NODE_ENV === "development" || NODE_ENV === "docker",
-  migrations: [__dirname + "/migration/*.ts"],
+  migrations: [path.resolve("/migration/*.ts")],
   subscribers: [],
 });
